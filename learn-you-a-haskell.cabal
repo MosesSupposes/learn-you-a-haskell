@@ -22,10 +22,13 @@ maintainer:         mosesasamuel633@gmail.com
 extra-source-files: CHANGELOG.md
 
 library
-    exposed-modules:  MyLib
+    exposed-modules:  
+        MyLib
 
     -- Modules included in this library but not exported.
-    -- other-modules:
+    other-modules:
+        Chapter2.ListComprehensions
+        Chapter4.PatternMatching
 
     -- LANGUAGE extensions used by modules in this package.
     -- other-extensions:
