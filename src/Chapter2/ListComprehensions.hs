@@ -1,4 +1,4 @@
-module Chapter1.ListComprehensions () where
+module Chapter2.ListComprehensions () where
 
 ex1 = [x * 2 | x <- [1 .. 10]]
 
