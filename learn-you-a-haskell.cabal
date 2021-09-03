@@ -30,6 +30,7 @@ library
         Chapter2.ListComprehensions
         Chapter4.PatternMatching
         Chapter4.Guards
+        Chapter5.Recursion
 
     -- LANGUAGE extensions used by modules in this package.
     -- other-extensions:
