@@ -26,6 +26,15 @@ take' amount _
 take' _ [] = []
 take' amount (x : xs) = x : take' (amount - 1) xs
 
+-- This definition is the same as above; the difference is that is showcases
+-- using case expressions with guards
+take'' :: (Num i, Ord i) => i -> [a] -> [a]
+take'' amount xs = case (amount, xs) of
+  (amount, _)
+    | amount <= 0 -> []
+  (_, []) -> []
+  (amount, x : xs) -> x : take' (amount - 1) xs
+
 reverse' :: [a] -> [a]
 reverse' [] = []
 reverse' (x : xs) = reverse' xs ++ [x]
