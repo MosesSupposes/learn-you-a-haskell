@@ -32,6 +32,7 @@ library
         Chapter4.Guards
         Chapter5.Recursion
         Chapter6.HigherOrderFunctions
+        Chapter8.OurTypes
 
     -- LANGUAGE extensions used by modules in this package.
     -- other-extensions:
