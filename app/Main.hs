@@ -1,6 +1,6 @@
 module Main where
 
-import qualified MyLib (printGreeting)
+import Chapter9.InputOutput 
 
 main :: IO ()
-main = MyLib.printGreeting
+main = helloChicken
