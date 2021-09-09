@@ -23,7 +23,7 @@ extra-source-files: CHANGELOG.md
 
 library
     exposed-modules:  
-        Chapter9.InputOutput
+        Chapter9.IOBasics
 
     -- Modules included in this library but not exported.
     other-modules:
