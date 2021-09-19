@@ -33,6 +33,7 @@ library
         Chapter5.Recursion
         Chapter6.HigherOrderFunctions
         Chapter8.OurTypes
+        Chapter11.Functors
 
     -- LANGUAGE extensions used by modules in this package.
     -- other-extensions:
