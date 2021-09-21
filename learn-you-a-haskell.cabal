@@ -34,6 +34,7 @@ library
         Chapter6.HigherOrderFunctions
         Chapter8.OurTypes
         Chapter11.Functors
+        Chapter11.ApplicativeFunctors
 
     -- LANGUAGE extensions used by modules in this package.
     -- other-extensions:
