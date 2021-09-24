@@ -140,3 +140,34 @@ afterWeLearnedAboutApplicatives2 :: [Int]
 afterWeLearnedAboutApplicatives2 =
   filter (> 50) $ (*) <$> [2, 5, 10] <*> [8, 10, 11]
 
+-- Another instance of Applicative that we've already encountered is IO. This is how the instance is implemented:
+-- * instance Applicative IO where  
+-- *    pure = return  
+-- *    a <*> b = do  
+-- *        f <- a  
+-- *        x <- b  
+-- *        return (f x)  
+
+
+-- Here, we'll define two IO actions; the first sans applicatives, the second with applicatives.
+concatLines :: IO String
+concatLines = do
+  a <- getLine
+  b <- getLine
+  return (a ++ b)
+
+concatLines' :: IO String
+concatLines' = (++) <$> getLine <*> getLine
+
+-- That's quite beautful, isn't it? Check this out:
+
+concatLines'' :: IO ()
+concatLines'' = do
+  a <- (++) <$> getLine <*> getLine
+  putStrLn $ "The two lines concatenated turn out to be " ++ a
+
+-- As you can see, we can bind to the result of the applicative as we would with any other IO value.
+
+-- Another instance of Applicative is (->) r, so functions. 
+-- They are rarely used with the applicative style outside of code golf, so we won't be showing any examples here.
+
