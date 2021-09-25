@@ -35,6 +35,7 @@ library
         Chapter8.OurTypes
         Chapter11.Functors
         Chapter11.ApplicativeFunctors
+        Chapter11.Monoids
 
     -- LANGUAGE extensions used by modules in this package.
     -- other-extensions:
