@@ -66,3 +66,63 @@ justH = do
     (x : xs) <- Just "hello"
     return x
 -- Just "h"
+
+-- Here's the Monad instance for Lists:
+-- * instance Monad [] where  
+-- *     return x = [x]  
+-- *     xs >>= f = concat (map f xs)  
+-- *     fail _ = [] 
+
+-- Just like with Maybe values, we can chain several lists with >>=
+listOfTuples :: [(Int, Char)]
+listOfTuples = [1, 2] >>= \n -> ['a', 'b'] >>= \ch -> return (n, ch)
+-- [(1,'a'),(1,'b'),(2,'a'),(2,'b')]  
+
+-- Here's the previous expression rewritten with do notation.
+listOfTuples' :: [(Int, Char)]
+listOfTuples' = do
+    n  <- [1, 2]
+    ch <- ['a', 'b']
+    return (n, ch)
+
+-- Using do notation on lists is very similar to list comprehensions. Take a look: 
+listOfTuples'' :: [(Int, Char)]
+listOfTuples'' = [ (n, ch) | n <- [1, 2], ch <- ['a', 'b'] ]
+-- [(1,'a'),(1,'b'),(2,'a'),(2,'b')]  
+
+-- In fact, list comprehensions are just syntactic sugar for using lists as monads. 
+
+-- The MonadPlus type class is for monads that can also act as monoids. Here's its definition:
+-- * class Monad m => MonadPlus m where  
+-- *     mzero :: m a  
+-- *     mplus :: m a -> m a -> m a  
+
+-- mzero is synonymous to mempty from the Monoid type class and mplus corresponds to mappend.
+-- Because lists are monoids as well as monads, they can be made an instance of this type class:
+-- * instance MonadPlus [] where  
+-- *     mzero = []  
+-- *     mplus = (++)  
+
+-- Remember the function composition operator? Take a look
+-- * (.) :: (b -> c) -> (a -> b) -> (a -> c)  
+-- * f . g = (\x -> f (g x))  
+
+-- How can we compose functions that return monadic values? The . operator won't work.
+-- Introducing the Fish operator:
+
+-- *  (<=<) :: (Monad m) => (b -> m c) -> (a -> m b) -> (a -> m c)  
+-- *  f <=< g = (\x -> g x >>= f)  
+
+
+(<=<) :: (Monad m) => (b -> m c) -> (a -> m b) -> (a -> m c)
+(<=<) f g = (\x -> g x >>= f)
+-- We can use the fish operator to compose monadic functions. Here's an example: 
+
+fishCompose :: [Int]
+fishCompose =
+    let f x = [x, -x]
+        g x = [x * 3, x * 2]
+        h = f <=< g
+    in  h 3
+-- [9,-9,6,-6] 
+
