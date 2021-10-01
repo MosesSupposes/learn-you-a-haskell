@@ -38,6 +38,7 @@ library
         Chapter11.Monoids
         Chapter12.Monads
         Chapter13.WriterMonad
+        Chapter13.StateMonad
 
     -- LANGUAGE extensions used by modules in this package.
     -- other-extensions:
